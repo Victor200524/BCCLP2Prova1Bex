@@ -1,14 +1,19 @@
-import logo from "../assets/imagens/ricardoeletro.png";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-export default function Cabecalho(props){
-    return(
-        <header style={
-            {
-                margin: '0px',
-                padding: '0px',
-            }
-        }>
-            <img src={logo} alt="Logo"/>            
+function Cabecalho({ nomeCliente, onCarrinhoClick }) {
+    const carrinho = useSelector((state) => state.carrinho);
+
+    const totalItens = carrinho.reduce((acc, produto) => acc + produto.quantidade, 0);
+
+    return (
+        <header className="cabecalho">
+            <h1>Bem-vindo(a), {nomeCliente}</h1>
+            <button onClick={onCarrinhoClick}>
+                Carrinho ({totalItens} {totalItens === 1 ? 'item' : 'itens'})
+            </button>
         </header>
     );
 }
+
+export default Cabecalho;

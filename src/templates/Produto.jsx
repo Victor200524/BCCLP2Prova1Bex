@@ -63,20 +63,6 @@ export default function Produto(props){
                     step={1}
                     min={1}/>
             </div>
-            <div id='botao-comprar'>
-                <button 
-                    style={{
-                        backgroundColor: 'rgb(255,60,60)',
-                        color: 'white',
-                        border: '0px',
-                        borderRadius:'10px',
-                        height: '40px',
-                        width: '120px',
-                    }}
-                    type='button'>
-                        Comprar
-                </button>
-            </div>
         </div>
     )
 }

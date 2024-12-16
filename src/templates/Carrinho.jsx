@@ -1,4 +1,10 @@
-export default function Carrinho(props) {
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+export default function CarrinhoDeCompras({ qtdCarrinho, onCarrinhoClick }) {
+    const carrinho = useSelector((state) => state.carrinho);
+    const totalItens = carrinho.reduce((acc, produto) => acc + produto.quantidade, 0);
+
     return (
         <div style={{
             display: 'flex',
@@ -18,11 +24,15 @@ export default function Carrinho(props) {
                 padding: '2px',
                 width: '40px'
             }} id='icone-carrinho'>
-                <button id='botao-carrinho'style={{
-                    backgroundColor: "inherit",
-                    border: '0px',
-                }
-                } type='button'>
+                <button
+                    id='botao-carrinho'
+                    style={{
+                        backgroundColor: "inherit",
+                        border: '0px',
+                    }}
+                    type='button'
+                    onClick={onCarrinhoClick} // Chama a função para alternar para o carrinho
+                >
                     <svg xmlns="http://www.w3.org/2000/svg"
                         width="32"
                         height="32"
@@ -49,7 +59,7 @@ export default function Carrinho(props) {
                 <p style={{
                     margin: '0px',
                     padding: '0px',
-                }}>{props.qtdCarrinho || 0} item</p>
+                }}>{totalItens || 0} item</p>
             </div>
             <div id='segurança' style={{
                 display: 'flex',
